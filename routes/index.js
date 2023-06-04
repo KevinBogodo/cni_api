@@ -23,7 +23,7 @@ const pieceController = require('../app/Http/Controllers/Crud/PieceController');
 router.get("/", welcomeController.get);
 /* Db sync route */
 router.get("/sync", syncController.sync);
-router.get("/sync-f", syncController.syncForce);
+router.get("/sync-f", auth, syncController.syncForce);
 
 /*** Auth route */
 router.post("/api/auth/login", authLogin.login);
@@ -33,8 +33,8 @@ router.post("/api/auth/reset", authLogin.reset);
 
 /********************************* Route pour crud ********************/
 
-router.get("/api/pieces", auth, pieceController.get);
-router.post("/api/add_piece", auth, pieceController.add);
+router.get("/api/pieces", pieceController.get);
+router.post("/api/add_piece", pieceController.add);
 router.put("/api/update_piece", auth, pieceController.update);
 
 /**************************** fin de routepour crud ********************/
