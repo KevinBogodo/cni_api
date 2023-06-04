@@ -2,8 +2,8 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "REST API",
-    "description": ""
+    "title": "API Docs",
+    "description": "This is api for lost documents. We have made this api to help people how have lost important documents such as Drive licence Or National id card to refound it. It's completly free to use. Feel free for donation if you want to help us. Contact us on contact-us@xjoel.com | contact@17companygroup.com"
   },
   "host": "localhost:3000",
   "basePath": "/",
@@ -13,67 +13,67 @@
   "paths": {
     "/": {
       "get": {
-        "description": "",
+        "description": "This is the main road project to test if api work",
         "parameters": [],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "This response Means that the app is working (start perfectly)"
           }
         }
       }
     },
     "/sync": {
       "get": {
-        "description": "",
+        "description": "This Road is made to sync database whit model if is there any change from developper side (backend) this road will apply it on database without delete or destroy anything",
         "parameters": [],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "This response means that synchronisation was done without error ! You can check the database."
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "This means that is there error from database or backend side! First- Check if database is created; Then check your database configuration in 'database/conexion.js' Or may be the connexion is bad"
           }
         }
       }
     },
     "/sync-f": {
       "get": {
-        "description": "",
+        "description": " This Road is made to sync database whit model by force if is there any change from developper side (backend-Model) this road will apply it on database by destroying all data and rebuild all database. We recommande to call this road only on if you are sure",
         "parameters": [
           {
-            "name": "authorization",
+            "name": "authorization Token",
             "in": "header",
             "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "This means that database as dropped and recreate without issue"
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "This means that current user is unauthorized to do this"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "This means that is there error from database or backend side! First- Check if database is created; Then check your database configuration in 'database/conexion.js' Or may be the connexion is bad"
           }
         }
       }
     },
     "/api/auth/login": {
       "post": {
-        "description": "",
+        "description": "This is the road to log in this app to have acces to securised part, on response you will have log message, token and data of logged user",
         "parameters": [
           {
-            "name": "body",
+            "name": "body of response",
             "in": "body",
             "schema": {
               "type": "object",
               "properties": {
                 "username": {
-                  "example": "any"
+                  "example": "your username"
                 },
                 "password": {
-                  "example": "any"
+                  "example": "your password"
                 }
               }
             }
@@ -81,20 +81,20 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "This means that user logged successfuly"
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "This means that user reconized successfuly but is unauthorized user"
           },
           "404": {
-            "description": "Not Found"
+            "description": "This means thas user was not Found"
           }
         }
       }
     },
     "/api/auth/register": {
       "post": {
-        "description": "",
+        "description": "Here is the road we ave made to create user. for app",
         "parameters": [
           {
             "name": "body",
@@ -135,13 +135,13 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "This means that user was sucesfully registered"
           },
           "400": {
-            "description": "Bad Request"
+            "description": "This means that is there an error in body form, please check the data before submit it"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "This means is there an error on database or backend side. please contact us to solve this or try again later."
           }
         }
       }
@@ -152,7 +152,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "This road response with data of current logged user !"
           }
         }
       }
@@ -163,14 +163,14 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "This road help for reset password !"
           }
         }
       }
     },
     "/api/pieces": {
       "get": {
-        "description": "",
+        "description": "This road was made to search pieces. If you lunch it without query parameters it will take all not withdrawn documents; If you add parameters it will be a search in database on 'document number, user name, user surname'. here is parameters format: '?search=SR42&limit=4' te search must be more than 2 characteres at least",
         "parameters": [
           {
             "name": "search",
@@ -185,20 +185,20 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "This means that no error you are supose to have data if is there data in database"
           },
           "400": {
-            "description": "Bad Request"
+            "description": "This means that parameters was not conforms . remind format for params is : '?search=SR42&limit=4', limit for limit displayed results"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "This means is there an error on database or backend side. please contact us to solve this or try again later."
           }
         }
       }
     },
     "/api/add_piece": {
       "post": {
-        "description": "",
+        "description": "This is non resricted road, is road to add documents. it can be added by anybody",
         "parameters": [
           {
             "name": "body",
@@ -254,20 +254,20 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "This means that the document successfuly saved"
           },
           "400": {
-            "description": "Bad Request"
+            "description": "This means that is there an error in body form, please check the data before submit it. or check if document was already saved"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "This means is there an error on database or backend side. please contact us to solve this or try again later."
           }
         }
       }
     },
     "/api/update_piece": {
       "put": {
-        "description": "",
+        "description": "This is resricted road, is road to update or edit documents. You can update userId(affected user), status(document status), widthdraw( widthdraw date) for that, you need to pass from first the document id  e.g: '?id=3&widthdraw=2023-06-04' Note: You can replace widthdraw by other parameters. Or if you want to update the document information you can pass the form in body in json object.",
         "parameters": [
           {
             "name": "authorization",
@@ -312,16 +312,16 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "This means that update was successfuly done"
           },
           "400": {
-            "description": "Bad Request"
+            "description": "This means that is there an error in body form, please check the data before submit it"
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "This means that current user is unauthorized to do this"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "This means is there an error on database or backend side. please contact us to solve this or try again later."
           }
         }
       }
