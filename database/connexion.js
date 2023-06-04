@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === 'production') {
         logging: true
     })
 } else {
-    sequelize = new Sequelize('pokes', 'root', '', {
+    sequelize = new Sequelize('cni_db', 'root', '', {
         host: 'localhost',
         dialect: 'mariadb',
         dialectOptions: {

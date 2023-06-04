@@ -11,8 +11,8 @@ module.exports = {
         autoIncrement: true
       },
       name: {
-          type: Sequelize.STRING,
-          allowNull: false,
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       surname: {
         type: Sequelize.STRING,
@@ -22,6 +22,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
         unique: { msg : 'Email already in use !' }
+      },
+      emailVerifiedAt: {
+        type: Sequelize.DATE,
+        field: 'email_verified_at',
       },
       phone1: {
         type: Sequelize.STRING,
@@ -44,15 +48,20 @@ module.exports = {
       password: {
           type: Sequelize.STRING,
           allowNull: false,
-
+      },
+      typeId: {
+        type: Sequelize.INTEGER,
+        field: 'type_id',
       },
       town: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      createdAt: Sequelize.DATE,
-      updatedAt: Sequelize.DATE,
 
+    },
+    {
+      timestamps: true,
+      updatedAt: 'updateTimestamp'
     })
   },
 
