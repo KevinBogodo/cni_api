@@ -18,8 +18,6 @@ app.use(cors())
     .use(router)
 
 
-
-
 app.listen(port, err => {
     if (err) return console.log(`Cannot Listen on Port: ${port}`);
     console.log(`Notre application node is start on : http://localhost:${port}`)

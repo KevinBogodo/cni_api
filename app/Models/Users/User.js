@@ -35,45 +35,23 @@ module.exports = sequelize.define('User', {
         validate: {
             isInt: { msg: 'Only number can be use for phone.' },
             notNull: { msg: 'status is a required property.' },
-            max: {
-                args : [13],
-                msg: 'Cannot exceed 13 characters'
-            },
             min: {
                 args: [9],
                 msg: 'Cannot be less 9 characters'
-            }
+            },
+            // max: {
+            //     args : [15],
+            //     msg: ' Phone number cannot exceed 15 characters'
+            // }
         }
       },
       phone2: {
         type: DataTypes.BIGINT,
-        allowNull: false,
-        validate: {
-            isInt: { msg: 'Only number can be use for phone.' },
-            max: {
-                args : [13],
-                msg: 'Cannot exceed 13 characters'
-            },
-            min: {
-                args: [9],
-                msg: 'Cannot be less 9 characters'
-            }
-        }
+        allowNull: true,
       },
       phone3: {
         type: DataTypes.BIGINT,
-        allowNull: false,
-        validate: {
-            isInt: { msg: 'Only number can be use for phone.' },
-            max: {
-                args : [13],
-                msg: 'Cannot exceed 13 characters'
-            },
-            min: {
-                args: [9],
-                msg: 'Cannot be less 9 characters'
-            }
-        }
+        allowNull: true,
       },
       username: {
         type: DataTypes.STRING,
