@@ -139,6 +139,7 @@ const Piece =  sequelize.define('Piece',
 });
 
 Piece.belongsTo(User);
+User.hasMany(Piece);
 Piece.belongsTo(PieceType, { foreignKey: {  name: 'typeId' } });
 
 module.exports = Piece;

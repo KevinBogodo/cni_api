@@ -1,7 +1,8 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../../../database/connexion');
+const TypeUser = require('./TypeUser');
 
-module.exports = sequelize.define('User', {
+const User = sequelize.define('User', {
       id: {
           type: DataTypes.INTEGER,
           primaryKey: true,
@@ -71,3 +72,6 @@ module.exports = sequelize.define('User', {
     timestamps: true,
     updatedAt: 'updateTimestamp'
 });
+
+// User.belongsTo(TypeUser, { foreignKey: {  name: 'typeId' } });
+module.exports = User;

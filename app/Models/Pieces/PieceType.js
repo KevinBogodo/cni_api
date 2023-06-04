@@ -1,7 +1,7 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize');
 const sequelize = require('../../../database/connexion');
 
-module.exports =  sequelize.define('PieceType', {
+const PieceType = sequelize.define('PieceType', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -25,3 +25,5 @@ module.exports =  sequelize.define('PieceType', {
         updatedAt: 'updateTimestamp'
     }
 );
+
+module.exports = PieceType;

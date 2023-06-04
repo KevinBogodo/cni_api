@@ -75,6 +75,7 @@ module.exports = {
                         }
                     ]
                 },
+                include: [PieceType, User],
                 order: ['id'],
                 limit: limit
                 
@@ -85,7 +86,7 @@ module.exports = {
             })
 
         }else{
-            Pieces.findAll({ include: [PieceType, User], order: ['id'] })
+            Pieces.findAll({ include: [PieceType, User], where: {withdrawalAt: { [Op.is]: null } }, order: ['id'] })
             .then(pieces => {
                 const message = 'The lists of pieces was successfully loaded'
                 res.json({ message, data: pieces})
@@ -96,5 +97,88 @@ module.exports = {
             })
         }
         
-    }
+    },
+
+    //Function to update status / user / widthdraw or All
+    update : (req, res) => {
+
+        if (req.query.id) {
+            
+            if (req.query.status) {
+                Pieces.findByPk(req.query.id)
+                    .then(piece => {
+                        // Check if record exists in db
+                        if (piece) {
+                            piece.update({
+                                status: req.query.status
+                            })
+                            .then(piece =>{
+                                const message = 'Succesfully update';
+                                return res.json({message, data: piece});
+                            })
+                            .catch(error => {
+                                const message = 'Error on update, try again later';
+                                return res.status(500).json({message, data: error});
+                            })
+                        }
+                    })                
+            }else if (req.query.user) {
+                Pieces.findByPk(req.query.id)
+                .then(piece => {
+                    // Check if record exists in db
+                    if (piece) {
+                        piece.update({
+                            UserId: req.query.user
+                        })
+                        .then(piece =>{
+                            const message = 'Succesfully update';
+                            return res.json({message, data: piece});
+                        })
+                        .catch(error => {
+                            const message = 'Error on update, try again later';
+                            return res.status(500).json({message, data: error});
+                        })
+                    }
+                })
+            } else if (req.query.widthdraw) {
+                Pieces.findByPk(req.query.id)
+                .then(piece => {
+                    // Check if record exists in db
+                    if (piece) {
+                        piece.update({
+                            withdrawalAt: req.query.widthdraw
+                        })
+                        .then(piece =>{
+                            const message = 'Succesfully update';
+                            return res.json({message, data: piece});
+                        })
+                        .catch(error => {
+                            const message = 'Error on update, try again later';
+                            return res.status(500).json({message, data: error});
+                        })
+                    }
+                })
+            } else {
+                const message = "To perform update of parameter you need to provide at least one of this 3 parameters : status, user or widthdraw !";
+                return res.status(400).json({message});
+            }
+
+        } else {
+            if (req.body.id) {
+                Pieces.find({ where: { id: req.body.id } })
+                    .on('success', function (piece) {
+                        // Check if record exists in db
+                        if (piece) {
+                            piece.update({
+                                title: 'a very different title now'
+                            })
+                        .success(function () {})
+                        }
+                    })
+            } else {
+                const message = 'To perform update you need to provide provide informations e.g: id.';
+                return res.status(400).json({message});
+            }
+        }
+    },
 }

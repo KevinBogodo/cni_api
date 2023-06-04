@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../../../database/connexion');
 
-module.exports =  sequelize.define('TypeUser', {
+const TypeUser = sequelize.define('TypeUser', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -25,3 +25,5 @@ module.exports =  sequelize.define('TypeUser', {
         updatedAt: 'updateTimestamp'
     }
 );
+
+module.exports = TypeUser; 

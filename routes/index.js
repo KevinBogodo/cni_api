@@ -35,6 +35,7 @@ router.post("/api/auth/reset", authLogin.reset);
 
 router.get("/api/pieces", auth, pieceController.get);
 router.post("/api/add_piece", auth, pieceController.add);
+router.put("/api/update_piece", auth, pieceController.update);
 
 /**************************** fin de routepour crud ********************/
 
