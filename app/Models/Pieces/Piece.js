@@ -4,14 +4,16 @@ const sequelize = require('../../../database/connexion');
 const PieceType = require('./PieceType');
 const User = require('../Users/User');
 
-module.exports =  sequelize.define('Piece', {
+const Piece =  sequelize.define('Piece', 
+    {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
         number: {
-            type: DataTypes.BIGINT,
+            type: DataTypes.STRING,
+            unique: { msg : 'Document is already saved !' },
         },
         Pname: {
             type: DataTypes.STRING,
@@ -51,8 +53,8 @@ module.exports =  sequelize.define('Piece', {
             type: DataTypes.INTEGER,
             field: 'type_id',
             references: {
-            model: PieceType,
-            key: 'id'
+                model: PieceType,
+                key: 'id'
             }
         },
         city: {
@@ -89,10 +91,10 @@ module.exports =  sequelize.define('Piece', {
             validate: {
                 isInt: { msg: 'Only number can be use for phone.' },
                 notNull: { msg: 'status is a required property.' },
-                max: {
-                    args : [13],
-                    msg: 'Cannot exceed 13 characters'
-                },
+                // max: {
+                //     args : [13],
+                //     msg: 'Cannot exceed 13 characters'
+                // },
                 min: {
                     args: [9],
                     msg: 'Cannot be less 9 characters'
@@ -122,8 +124,8 @@ module.exports =  sequelize.define('Piece', {
             type: DataTypes.INTEGER,
             field: 'user_id',
             references: {
-            model: User,
-            key: 'id'
+                model: User,
+                key: 'id'
             }
         },
         withdrawalAt:{
@@ -135,3 +137,8 @@ module.exports =  sequelize.define('Piece', {
       timestamps: true,
       updatedAt: 'updateTimestamp'
 });
+
+Piece.belongsTo(User);
+Piece.belongsTo(PieceType, { foreignKey: {  name: 'typeId' } });
+
+module.exports = Piece;

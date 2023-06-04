@@ -1,1 +1,1 @@
-module.exports = 'CUSTOM_PRIVATE_KEY'
+module.exports = 'CNI_API_XJOEL_17COMPANY_2023'
