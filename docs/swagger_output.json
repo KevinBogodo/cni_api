@@ -305,6 +305,48 @@
                 },
                 "id": {
                   "example": "any"
+                },
+                "number": {
+                  "example": "any"
+                },
+                "Pname": {
+                  "example": "any"
+                },
+                "Psurname": {
+                  "example": "any"
+                },
+                "Ppicture": {
+                  "example": "any"
+                },
+                "Ppicture2": {
+                  "example": "any"
+                },
+                "p_phone": {
+                  "example": "any"
+                },
+                "typeId": {
+                  "example": "any"
+                },
+                "city": {
+                  "example": "any"
+                },
+                "street": {
+                  "example": "any"
+                },
+                "status": {
+                  "example": "any"
+                },
+                "Fphone": {
+                  "example": "any"
+                },
+                "Fphone2": {
+                  "example": "any"
+                },
+                "UserId": {
+                  "example": "any"
+                },
+                "withdrawal_at": {
+                  "example": "any"
                 }
               }
             }

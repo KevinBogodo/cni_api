@@ -169,8 +169,21 @@ module.exports = {
                     .on('success', function (piece) {
                         // Check if record exists in db
                         if (piece) {
-                            piece.update({
-                                title: 'a very different title now'
+                            piece.update({ 
+                                number: req.body.number,
+                                Pname: req.body.Pname,
+                                Psurname: req.body.Psurname,
+                                Ppicture: req.body.Ppicture,
+                                Ppicture2: req.body.Ppicture2,
+                                Pphone: req.body.p_phone,
+                                typeId: req.body.typeId,
+                                city: req.body.city,
+                                street: req.body.street,
+                                status: req.body.status,
+                                Fphone: req.body.Fphone,
+                                Fphone2: req.body.Fphone2,
+                                UserId: req.body.UserId,
+                                withdrawal_at: req.body.withdrawal_at
                             })
                         .success(function () {})
                         }
