@@ -5,7 +5,7 @@
     "title": "API Docs",
     "description": "This is api for lost documents. We have made this api to help people how have lost important documents such as Drive licence Or National id card to refound it. It's completly free to use. Feel free for donation if you want to help us. Contact us on contact-us@xjoel.com | contact@17companygroup.com"
   },
-  "host": "localhost:3000",
+  "host": "http://cni-api.xjoel.com/",
   "basePath": "/",
   "schemes": [
     "http"
