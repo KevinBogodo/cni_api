@@ -1,0 +1,71 @@
+version: '4.12'
+
+services: 
+    #Node Service
+    main:
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        container_name: cni-api
+        restart: unless-stopped
+        tty: true
+        command: 'npm run dev --host=0.0.0.0'
+        environment:
+            SERVICE_NAME: cni-api
+            SERVICE_TAGS: dev
+        volumes:
+            - .:/app
+        ports:
+            - 3000:3000
+        depends_on: 
+            - db
+        networks:
+            - cni-network
+
+    # queue:
+    #     build: 
+    #         context: .
+    #         dockerfile: Dockerfile
+    #     command: 'php artisan queue:work'
+    #     depends_on: 
+    #         - db        
+
+    #MySQL Service
+    db:
+        image: mysql:latest
+        container_name: cni_db
+        restart: unless-stopped
+        tty: true
+        ports:
+            - "3006:3306"
+        environment:
+            MYSQL_DATABASE: cni_db
+            MYSQL_ROOT_PASSWORD: root
+            SERVICE_TAGS: dev
+            SERVICE_NAME: mysql
+        volumes:
+            - dbdata:/var/lib/mysql/
+            - ./mysql/my.cnf:/etc/mysql/my.cnf
+        networks:
+            - cni-network
+    myadmin:
+        image: phpmyadmin:latest
+        container_name: cni_phpmyadmin
+        restart: unless-stopped
+        ports:
+            - "8282:80"
+        environment:
+            PMA_HOST: db
+        networks:
+            - cni-network
+ 
+#Docker Networks
+networks:
+    cni-network:
+        driver: bridge
+
+#Volumes
+volumes:
+    dbdata:
+        driver: local
+
